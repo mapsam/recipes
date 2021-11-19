@@ -11,7 +11,8 @@ soup = BeautifulSoup(requests.get(url).text, "html.parser")
 # get recipe image
 intro = soup.find("div", {"class": "recipe-intro"})
 img = intro.find("img")
-print("\n![](" + img["src"] + ")")
+if img:
+  print("\n![](" + img["src"] + ")")
 
 # get ingredients
 print("\n### ingredients")
@@ -32,12 +33,13 @@ for index, step in enumerate(steps, start=1):
   print(str(index) + ".", content)
 
 # get notes
-print("\n### notes\n")
 noteslist = soup.find("ul", {"class": "recipe-notes"})
-notes = noteslist.findChildren("li", recursive=False)
-for index, note in enumerate(notes, start=1):
-  content = note.find("span", {"class": "recipe-note-description"}).decode_contents().strip('\t\r\n').strip()
-  print(str(index) + ".", content)
+if noteslist:
+  print("\n### notes\n")
+  notes = noteslist.findChildren("li", recursive=False)
+  for index, note in enumerate(notes, start=1):
+    content = note.find("span", {"class": "recipe-note-description"}).decode_contents().strip('\t\r\n').strip()
+    print(str(index) + ".", content)
 
 # print url
 print("\n", url)
