@@ -1,6 +1,6 @@
 ## Recipes!
 
-Recipes I've cooked or want to cook are in the [issues](/issues).
+Recipes I've cooked or want to cook are in the [issues](https://github.com/mapsam/recipes/issues).
 
 ## New York Times recipes
 
