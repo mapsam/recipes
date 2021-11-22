@@ -6,7 +6,9 @@ import requests
 url = sys.argv[1]
 
 # soupify
-soup = BeautifulSoup(requests.get(url).text, "html.parser")
+res = requests.get(url)
+print(res.headers)
+soup = BeautifulSoup(res.text, "html.parser")
 
 # get recipe image
 intro = soup.find("div", {"class": "recipe-intro"})

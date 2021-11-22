@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+body {
+  color: #111111;
+  font-family: 'Lora', serif;
+  line-height: 1.9em;
+}
+
+.main {
+  display: block;
+  margin: 20px auto;
+  max-width: 700px;
+}
+
+img {
+  max-width: 700px;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 10px;
+  font-family: 'Lora', serif;
+  border-radius: 4px;
+  border: 1px solid #aaaaaa;
+  display: inline-block;
+  width: 570px;
+  margin: 0;
+}
+
+input[type=radio] {
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: #DDDDDD;
+  color: #ffffff;
+  border: none;
+  margin-top: 10px;
+  border-radius: 4px;
+  font-family: 'Lora', serif;
+  color: #111111;
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  width: 100px;
+  margin: 0;
+}
+
+.data-radios {
+  margin: 10px auto;
+}
+
+.data pre {
+  overflow-y: scroll;
+  padding: 10px;
+  border-radius: 4px;
+  background: #f6f6f6;
+  font-family: 'Menlo', 'Bitstream Vera Sans Mono', 'Monaco', 'Consolas', monospace;
+  line-height: 1.4em;
+  font-size: 0.9em;
+}
