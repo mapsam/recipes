@@ -6,43 +6,28 @@ import Markdown from '../components/Markdown.js';
 
 export default function App(props) {
   const router = useRouter();
-  const [ url, setUrl ] = useState('https://cooking.nytimes.com/recipes/1020860-pasta-e-ceci-italian-pasta-and-chickpea-stew');
+  const [ url, setUrl ] = useState(null);
   const [ loading, setLoading ] = useState(false);
-  const [ data, setData ] = useState();
+  const [ data, setData ] = useState(null);
   const [ selected, setSelected ] = useState('Nice');
 
   // load URL if in query
   useEffect(async() => {
     const query = new URLSearchParams(window.location.search);
-    const env = query.get('url') || null;
-    await getRecipe();
+    const u = query.get('url');
+    if (u) {
+      setUrl(u);
+      setLoading(true);
+      const recipe = await fetch(`/api/recipe?url=${u}`)
+        .then((res) => res.json());
+
+      setData(recipe);
+      setLoading(false);
+    }
   }, []);
-
-  // update URL as input box changes
-  useEffect(() => {
-    router.push({
-      pathname: '/',
-      query: { url }
-    })
-  }, [url]);
-
-  async function getRecipe(e) {
-    if (e) e.preventDefault();
-    setLoading(true);
-    setData(null);
-    const recipe = await fetch(`/api/recipe?url=${url}`)
-      .then((res) => res.json());
-
-    setData(recipe);
-    setLoading(false);
-  }
 
   return (
     <div className="main">
-      <p>Supply a recipe URL from cooking.nytimes.com</p>
-      <input type="text" value={url} onChange={(e) => setUrl(e.target.value)}></input>
-      <button onClick={getRecipe}>get recipe</button>
-
       {loading &&
         <p>Fetching recipe ...</p>
       }
