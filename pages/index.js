@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Nice from '../components/Nice.js';
 import Schema from '../components/Schema.js';
 import Markdown from '../components/Markdown.js';
 
 export default function App(props) {
-  const router = useRouter();
   const [ url, setUrl ] = useState(null);
   const [ loading, setLoading ] = useState(false);
   const [ data, setData ] = useState(null);
@@ -16,7 +14,7 @@ export default function App(props) {
     const query = new URLSearchParams(window.location.search);
     const u = query.get('url');
     if (u) {
-      setUrl(u);
+      setUrl(decodeURIComponent(u.trim()));
       setLoading(true);
       const recipe = await fetch(`/api/recipe?url=${u}`)
         .then((res) => res.json());
@@ -35,18 +33,18 @@ export default function App(props) {
       {data &&
         <div className="data">
           <div className="data-radios" onChange={(e) => setSelected(e.target.value)}>
-            <input type="radio"
+            <input key="format-select-nice" type="radio"
               value="Nice"
               name="selected"
-              checked={selected === 'Nice'} />Nice<br />
-            <input type="radio"
+              defaultChecked={selected === 'Nice'} />Nice<br />
+            <input key="format-select-schema" type="radio"
               value="Schema"
               name="selected"
-              checked={selected === 'Schema'} />JSON Schema<br />
-            <input type="radio"
+              defaultChecked={selected === 'Schema'} />JSON Schema<br />
+            <input key="format-select-markdown" type="radio"
               value="Markdown"
               name="selected"
-              checked={selected === 'Markdown'} />Markdown<br />
+              defaultChecked={selected === 'Markdown'} />Markdown<br />
           </div>
 
           {selected === 'Nice' &&

@@ -11,15 +11,15 @@ export default function Nice({ data, url }) {
 
       <h3>Ingredients</h3>
       <ul>
-      {data.recipeIngredient.map((ingredient) => {
-        return <li>{ingredient}</li>;
+      {data.recipeIngredient.map((ingredient, index) => {
+        return <li key={`recipe-ingredient-${index}`}>{ingredient}</li>;
       })}
       </ul>
 
       <h3>Steps</h3>
       <ol>
-      {data.recipeInstructions.map((instruction) => {
-        return <li>{instruction.text}</li>;
+      {data.recipeInstructions.map((instruction, index) => {
+        return <li key={`recipe-instruction-${index}`}>{instruction.text}</li>;
       })}
       </ol>
 

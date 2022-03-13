@@ -2,8 +2,8 @@ import superagent from 'superagent';
 import { JSDOM } from 'jsdom';
 
 export default async function handler(req, res) {
-  console.log(`getting ${req.query.url}`)
-  const response = await superagent.get(req.query.url);
+  console.log(`getting ${req.query.url}`);
+  const response = await superagent.get(req.query.url.trim());
   const dom = new JSDOM(response.text);
   const scripts = dom.window.document.querySelectorAll('script');
   let recipe;
