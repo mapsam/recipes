@@ -5,7 +5,7 @@ export default function Nice({ data, url }) {
     <React.Fragment>
       <h1>{data.name}</h1>
       <p><em>{data.recipeCategory}</em></p>
-      <img src={data.image}/>
+      <img src={Array.isArray(data.image) ? data.image[0].url : data.image}/>
 
       <p dangerouslySetInnerHTML={{__html: data.description}}>{}</p>
 
