@@ -11,7 +11,7 @@ export default function App(props) {
   const [ selected, setSelected ] = useState('Nice');
 
   // load URL if in query
-  useEffect(async() => {
+  async function fetchRecipe() {
     const query = new URLSearchParams(window.location.search);
     const u = query.get('url');
     if (u) {
@@ -23,6 +23,10 @@ export default function App(props) {
       setData(recipe);
       setLoading(false);
     }
+  }
+
+  useEffect(() => {
+    fetchRecipe();
   }, []);
 
   return (
